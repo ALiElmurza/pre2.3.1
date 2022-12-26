@@ -1,59 +1,75 @@
 package web.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-import web.models.User;
 
+
+import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.context.annotation.*;
+import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import javax.annotation.Resource;
 import javax.sql.DataSource;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.orm.jpa.JpaTransactionManager;
+
+
 
 
 @Configuration
+@EnableJpaRepositories("web.repository")
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
 @ComponentScan(value = "web")
-public class AppConfig {
 
-   @Autowired
+public class AppConfig {
+   @Resource
    private Environment env;
+   @Bean
+   public LocalContainerEntityManagerFactoryBean getEntityManager() {
+      LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
+      entityManager.setDataSource(getDataSource());
+      entityManager.setPackagesToScan(env.getRequiredProperty("db.entity.package"));
+      entityManager.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+      entityManager.setJpaProperties(getHibernateProp());
+
+      return entityManager;
+   }
 
    @Bean
    public DataSource getDataSource() {
-      DriverManagerDataSource dataSource = new DriverManagerDataSource();
+      BasicDataSource dataSource = new BasicDataSource();
       dataSource.setDriverClassName(env.getProperty("db.driver"));
       dataSource.setUrl(env.getProperty("db.url"));
       dataSource.setUsername(env.getProperty("db.username"));
       dataSource.setPassword(env.getProperty("db.password"));
+
+      dataSource.setInitialSize(Integer.valueOf(env.getRequiredProperty("db.initialSize")));
+      dataSource.setMinIdle(Integer.valueOf(env.getRequiredProperty("db.minIdle")));
+      dataSource.setMaxIdle(Integer.valueOf(env.getRequiredProperty("db.maxIdle")));
+      dataSource.setTimeBetweenEvictionRunsMillis(Long.valueOf(env.getRequiredProperty("db.timeBetweenEvictionMillis")));
+      dataSource.setMinEvictableIdleTimeMillis(Long.valueOf(env.getProperty("db.minEvictableIdleTimeMillis")));
+      dataSource.setTestOnBorrow(Boolean.valueOf(env.getRequiredProperty("dv.testOnBorrow")));
+      dataSource.setValidationQuery(env.getRequiredProperty("db.validation"));
+
       return dataSource;
    }
-
    @Bean
-   public LocalSessionFactoryBean getSessionFactory() {
-      LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
-      factoryBean.setDataSource(getDataSource());
-      
-      Properties props=new Properties();
-      props.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
-      props.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto", "create-drop"));
-
-      factoryBean.setHibernateProperties(props);
-      factoryBean.setAnnotatedClasses(User.class);
-      //factoryBean.setAnnotatedClasses(Car.class);
-      return factoryBean;
+   public PlatformTransactionManager platformTransactionManager() {
+      JpaTransactionManager manager = new JpaTransactionManager();
+      manager.setEntityManagerFactory(getEntityManager().getObject());
+      return manager;
    }
 
-   @Bean
-   public HibernateTransactionManager getTransactionManager() {
-      HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-      transactionManager.setSessionFactory(getSessionFactory().getObject());
-      return transactionManager;
+   public Properties getHibernateProp() {
+         Properties props=new Properties();
+         props.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+         props.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto", "create"));
+         return props;
    }
+
 }
