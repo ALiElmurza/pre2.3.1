@@ -7,16 +7,18 @@ import javax.persistence.*;
 @Entity
 @Table(name = "User")
 public class User {
+//    @Id
+//    @GeneratedValue(generator = "increment")
+//    @GenericGenerator(name = "increment", strategy = "increment")
+//    @Column(name = "id", nullable = false)
     @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
-    //@Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name",  nullable = false, length = 50)
+    @Column(name = "name")
     private String firstName;
 
-    @Column(name = "last_name", nullable = false, length = 50)
+    @Column(name = "last_name")
     private String lastName;
 
 
@@ -24,7 +26,7 @@ public class User {
 
     }
 
-    public User (String firstName, String lastName, int age) {
+    public User (String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -46,12 +48,8 @@ public class User {
         this.lastName = lastName;
     }
 
-
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

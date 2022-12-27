@@ -3,7 +3,6 @@ package web.config;
 
 
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -18,12 +17,12 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 
 
 
-
 @Configuration
 @EnableJpaRepositories("web.repository")
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
 @ComponentScan(value = "web")
+
 public class AppConfig {
 
    @Resource
@@ -65,7 +64,7 @@ public class AppConfig {
    }
 
    public Properties getHibernateProp() {
-         Properties props=new Properties();
+         Properties props = new Properties();
          props.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
          props.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
          return props;

@@ -3,22 +3,31 @@ package web.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import web.dao.DaoImp;
 
+import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 @RequestMapping("/")
 public class UsersController {
+
+    private final DaoImp daoImp = new DaoImp();
+
+
     @GetMapping
-    @ResponseBody
     public String getUsers(Model model){
-        List<String> list = new ArrayList<>();
-        list.add("Hello");
-        list.add("world");
-        model.addAttribute("messages", list);
+        model.addAttribute("messages", daoImp.getListUsers());
         return "index";
     }
+
+    @PutMapping("/add")
+    public String addUser(Model model) {
+        //model.
+        return "index";
+    }
+
     @GetMapping("/{id}")
     public String getUserById(@PathVariable("id") int id, Model model){
         return null;
