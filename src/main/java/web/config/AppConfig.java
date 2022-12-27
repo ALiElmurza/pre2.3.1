@@ -3,6 +3,7 @@ package web.config;
 
 
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -11,8 +12,6 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -25,10 +24,11 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
 @ComponentScan(value = "web")
-
 public class AppConfig {
+
    @Resource
    private Environment env;
+
    @Bean
    public LocalContainerEntityManagerFactoryBean getEntityManager() {
       LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
@@ -36,7 +36,6 @@ public class AppConfig {
       entityManager.setPackagesToScan(env.getRequiredProperty("db.entity.package"));
       entityManager.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
       entityManager.setJpaProperties(getHibernateProp());
-
       return entityManager;
    }
 
@@ -68,7 +67,7 @@ public class AppConfig {
    public Properties getHibernateProp() {
          Properties props=new Properties();
          props.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
-         props.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto", "create"));
+         props.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
          return props;
    }
 
