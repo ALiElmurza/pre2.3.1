@@ -3,6 +3,7 @@ package web.models;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "User")
@@ -26,10 +27,6 @@ public class User {
 
     }
 
-    public User (String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
 
 
     public String getFirstName() {
@@ -52,4 +49,11 @@ public class User {
         return id;
     }
 
+    @Override
+    public String toString() {
+        return "Пользователь: " +
+                "id: " + id +
+                ", Имя: " + firstName +
+                ", Фамилия: " + lastName;
+    }
 }

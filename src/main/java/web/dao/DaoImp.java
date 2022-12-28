@@ -1,6 +1,8 @@
 package web.dao;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import web.models.User;
 
 import javax.persistence.*;
@@ -8,29 +10,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-//@Repository
-public class DaoImp implements Dao {
+@Component
+public class DaoImp {
     @PersistenceContext
-    EntityManager entityManager;
-    private static int ID;
-    private static List<User> list = new ArrayList<>();
-    @Override
+    private EntityManager entityManager;
+
     public List<User> getListUsers() {
-        return list;
+        Query query = entityManager.createQuery("from User ");
+        return query.getResultList();
+    }
+    @Transactional
+    public void save(String name, String lastName) {
+        User user = new User();
+        user.setFirstName(name);
+        user.setLastName(lastName);
+        entityManager.persist(user);
     }
 
-    public void setUser(String name, String lastName) {
-        list.add(new User(name, lastName));
+    @Transactional
+    public void save(User user) {
+        entityManager.persist(user);
     }
 
-    public User getUserByID(int id) {
+    public String getUserByID(int id) {
         String HQL = "from User as user where user = :id";
         Query query = entityManager.createQuery(HQL);
         query.setParameter("id", id);
-        return (User) query.getSingleResult();
+        return query.getSingleResult().toString();
     }
-
-
 
 
 }

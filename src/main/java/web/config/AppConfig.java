@@ -18,7 +18,7 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 
 
 @Configuration
-@EnableJpaRepositories("web.repository")
+//@EnableJpaRepositories("web.repository")
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
 @ComponentScan(value = "web")

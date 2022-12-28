@@ -6,6 +6,8 @@
     <title></title>
 </head>
 <body>
-<p th:text="${messages}">
+<div th:each = "user : ${users}">
+    <p th:text="${user.toString()}">name</p>
+</div>
 </body>
 </html>
