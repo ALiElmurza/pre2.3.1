@@ -27,7 +27,10 @@ public class User {
 
     }
 
-
+    public User (String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
     public String getFirstName() {
         return firstName;

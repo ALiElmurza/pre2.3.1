@@ -9,5 +9,8 @@
 <div th:each = "user : ${users}">
     <p th:text="${user.toString()}">name</p>
 </div>
+<button type="button">
+    <a href="/user/new">Добавить нового пользователя</a>
+</button>
 </body>
 </html>

@@ -2,29 +2,23 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>New person</title>
+    <title>New user</title>
 </head>
 <body>
-    <form method="Post" action="/user">
-        <label for = "name">Name</label>
-        <input name="name" type="text" id="name"/>
-
-        <br>
-
-        <label for = "surname">Surname</label>
-        <input name="surname" type="text" id="surname"/>
-
-        <br>
-
-        <input type="submit" value="Add user"/>
-<!--
 <form th:method="POST" th:action="@{/user}" th:object="${user}">
-    <label for="name">Enter name: </label>
-    <input type="text" th:field="*{name}" id="name"/>
+
+    <label for="firstName">Введите имя:  </label>
+    <input type="text" th:field="*{firstName}" id="firstName"/>
+
     <br/>
-    <input type="submit" value="Create!"/>
+
+    <label for="lastName">Введите фамилию: </label>
+    <input type="text" th:field="*{lastName}" id="lastName"/>
+
+    <br/>
+
+    <input type="submit" value="Добавить пользователя!"/>
+
 </form>
--->
-    </form>
 </body>
 </html>
