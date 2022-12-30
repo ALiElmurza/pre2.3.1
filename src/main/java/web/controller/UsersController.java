@@ -34,9 +34,9 @@ public class UsersController {
     }
 
     @GetMapping("/{id}")
-    public String getUserById(@PathVariable("id") int id, Model model) {
+    public String getUserById(@PathVariable("id") Long id, Model model) {
         model.addAttribute("user", daoImp.getUserByID(id));
-        return "userById";
+        return "show";
     }
 
 }

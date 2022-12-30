@@ -32,12 +32,18 @@ public class DaoImp {
         entityManager.persist(user);
     }
 
-    public String getUserByID(int id) {
-        String HQL = "from User as user where user = :id";
+    public User getUserByID(Long id) {
+        String HQL = "from User as user where user.id = :id";
         Query query = entityManager.createQuery(HQL);
         query.setParameter("id", id);
-        return query.getSingleResult().toString();
+        try {
+            return (User) query.getSingleResult();
+        } catch (Exception ignore) {
+
+        }
+        return null;
     }
+
 
 
 }
