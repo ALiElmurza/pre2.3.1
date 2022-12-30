@@ -51,4 +51,10 @@ public class UsersController {
         return "redirect:/user";
     }
 
+    @GetMapping("/update")
+    public String getListToUpdate(Model model) {
+        model.addAttribute("users", daoImp.getListUsers());
+        return "update";
+    }
+
 }

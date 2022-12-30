@@ -8,7 +8,7 @@
 <body>
 
 <div th:each="user : ${users}">
-    <a th:href="@{/user/{id}(id=${user.getId()})}" th:text="${user.toString()}">name</a>
+    <a th:href="@{/user/{id}/edit(id=${user.getId()})}" th:text="${user.toString()}">name</a>
 </div>
 
 <br/>
@@ -18,10 +18,6 @@
 </button>
 
 <br/>
-
-<button type="button">
-    <a href="/user/update">Обновить пользователя</a>
-</button>
 
 </body>
 </html>
