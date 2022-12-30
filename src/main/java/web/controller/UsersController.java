@@ -39,4 +39,16 @@ public class UsersController {
         return "show";
     }
 
+    @GetMapping("/{id}/edit")
+    public String edit(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("user", daoImp.getUserByID(id));
+        return "edit";
+    }
+
+    @PatchMapping("/{id}")
+    public String update(@ModelAttribute("user") User user) {
+        daoImp.update(user);
+        return "redirect:/user";
+    }
+
 }

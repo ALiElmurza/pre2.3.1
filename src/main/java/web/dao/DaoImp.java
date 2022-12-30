@@ -19,31 +19,20 @@ public class DaoImp {
         Query query = entityManager.createQuery("from User ");
         return query.getResultList();
     }
-    @Transactional
-    public void save(String name, String lastName) {
-        User user = new User();
-        user.setFirstName(name);
-        user.setLastName(lastName);
-        entityManager.persist(user);
-    }
 
     @Transactional
     public void save(User user) {
         entityManager.persist(user);
     }
 
-    public User getUserByID(Long id) {
-        String HQL = "from User as user where user.id = :id";
-        Query query = entityManager.createQuery(HQL);
-        query.setParameter("id", id);
-        try {
-            return (User) query.getSingleResult();
-        } catch (Exception ignore) {
-
-        }
-        return null;
+    @Transactional
+    public void update(User user) {
+        entityManager.merge(user);
     }
 
+    public User getUserByID(Long id) {
+        return entityManager.find(User.class, id);
+    }
 
 
 }
