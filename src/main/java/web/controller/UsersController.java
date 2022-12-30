@@ -57,4 +57,23 @@ public class UsersController {
         return "update";
     }
 
+    @GetMapping("/delete")
+    public String getListToDelete(Model model) {
+        model.addAttribute("users", daoImp.getListUsers());
+        return "delete";
+    }
+
+    @GetMapping("/{id}/deleteById")
+    public String getUserToDelete(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("user", daoImp.getUserByID(id));
+        return "show";
+    }
+
+    @DeleteMapping("/{id}/delete")
+    public String delete(@PathVariable("id") Long id) {
+        daoImp.delete(id);
+        return "redirect:/user";
+    }
+
+
 }

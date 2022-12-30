@@ -30,6 +30,11 @@ public class DaoImp {
         entityManager.merge(user);
     }
 
+    @Transactional
+    public void delete(Long id) {
+        entityManager.remove(getUserByID(id));
+    }
+
     public User getUserByID(Long id) {
         return entityManager.find(User.class, id);
     }
