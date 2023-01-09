@@ -10,9 +10,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6bab334-5a73-4c7a-b8ae-6862a3d1c14a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/web/config/SpringConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/web/repositories/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/web/services/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/delete.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/new.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/show.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/update.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/web/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/config/AppConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/config/AppConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/config/AppInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/config/AppInit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/config/WebConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/controller/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/controller/UsersController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/dao/DaoImp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/web/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/models/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/webapp/WEB-INF/pages/delete.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/webapp/WEB-INF/pages/edit.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/webapp/WEB-INF/pages/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/webapp/WEB-INF/pages/new.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/webapp/WEB-INF/pages/show.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/webapp/WEB-INF/pages/update.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +82,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -71,9 +93,9 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.19092627",
     "spring.configuration.checksum": "c5611d5c8c9f9e897d6bf480c0e77655",
     "vue.rearranger.settings.migration": "true"
   },
@@ -91,11 +113,11 @@
       <recent name="C:\Users\user\IdeaProjects\pre2.3.1\src\webapp\WEB-INF\pages" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\user\IdeaProjects\pre2.3.1\src\main" />
       <recent name="C:\Users\user\IdeaProjects\pre2.3.1\src\main\java\web" />
       <recent name="C:\Users\user\IdeaProjects\pre2.3.1\src\main\java\web\models" />
       <recent name="C:\Users\user\IdeaProjects\pre2.3.1\src\main\java\web\controller" />
       <recent name="C:\Users\user\IdeaProjects\pre2.3.1\src\main\java\web\config" />
-      <recent name="C:\Users\user\IdeaProjects\pre2.3.1\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="web.config" />
@@ -199,9 +221,7 @@
       </ConfigurationWrapper>
       <method v="2">
         <option name="Make" enabled="true" />
-        <option name="BuildArtifacts" enabled="true">
-          <artifact name="spring-mvc:war exploded" />
-        </option>
+        <option name="BuildArtifacts" enabled="false" />
       </method>
     </configuration>
   </component>
@@ -230,11 +250,20 @@
       <workItem from="1673016889041" duration="1250000" />
       <workItem from="1673092897896" duration="2568000" />
       <workItem from="1673286553019" duration="1496000" />
+      <workItem from="1673288800705" duration="135000" />
+      <workItem from="1673297796542" duration="397000" />
+      <workItem from="1673304649833" duration="1327000" />
+      <workItem from="1673305987970" duration="77000" />
+      <workItem from="1673306985225" duration="588000" />
+      <workItem from="1673307652635" duration="89000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
